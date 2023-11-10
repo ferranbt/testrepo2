@@ -18,6 +18,8 @@ jobs:
       - name: Mirror
         run: |
           ls suave-geth
+          cp suave-geth/suave/sol/libraries/Suave.sol .
+          cp suave-geth/suave/sol/libraries/SuaveForge.sol .
 
       - name: dispatch trigger
         run: |
