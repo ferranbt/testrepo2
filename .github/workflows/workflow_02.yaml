@@ -17,6 +17,11 @@ jobs:
           repository: flashbots/suave-geth
           path: suave-geth
 
+      - name: Mirror
+        run: |
+          cp suave-geth/suave/sol/libraries/Suave.sol .
+          cp suave-geth/suave.sol/libraries/SuaveForge.sol .
+
       - name: dispatch trigger
         run: |
           echo "repository_dispatch triggered"
