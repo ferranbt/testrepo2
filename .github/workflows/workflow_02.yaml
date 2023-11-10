@@ -24,6 +24,12 @@ jobs:
         run: |
           cp suave-geth/suave/sol/libraries/Suave.sol .
           cp suave-geth/suave/sol/libraries/SuaveForge.sol .
+          git add Suave.sol
+          git add SuaveForge.sol
+          rm -rf suave-geth
+
+      - name: Commit
+        run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git commit -a -m "Update Suave libs"
