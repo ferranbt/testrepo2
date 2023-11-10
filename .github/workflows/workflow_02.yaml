@@ -33,6 +33,13 @@ jobs:
           git add SuaveForge.sol
           rm -rf suave-geth
 
+      - name: Check for changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit. Exiting workflow."
+            exit 0
+          fi
+
       - name: Commit
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
