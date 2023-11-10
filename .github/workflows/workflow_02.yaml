@@ -8,21 +8,29 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
 
       - name: Checkout tools repo
         uses: actions/checkout@v4
         with:
           repository: flashbots/suave-geth
           path: suave-geth
+          persist-credentials: false
+          fetch-depth: 0
 
       - name: Mirror
         run: |
           cp suave-geth/suave/sol/libraries/Suave.sol .
           cp suave-geth/suave/sol/libraries/SuaveForge.sol .
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -a -m "Update Suave libs"
 
       - name: Push
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.PUSH_SECRET }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
           force: true
