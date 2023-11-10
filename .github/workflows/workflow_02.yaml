@@ -2,6 +2,11 @@ name: workflow_02
 
 on: [repository_dispatch, workflow_dispatch]
 
+permissions:
+  pull-requests: write
+  issues: write
+  repository-projects: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
