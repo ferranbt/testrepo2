@@ -1,12 +1,22 @@
 name: workflow_02
 
-on: [repository_dispatch]
+on: [repository_dispatch, workflow_dispatch]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          path: main
+
+      - name: Checkout tools repo
+        uses: actions/checkout@v4
+        with:
+          repository: flashbots/suave-geth
+          path: suave-geth
+
       - name: dispatch trigger
         run: |
           echo "repository_dispatch triggered"
